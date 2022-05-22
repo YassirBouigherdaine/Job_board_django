@@ -1,0 +1,227 @@
+
+{% extends 'base.html' %}
+
+	{% block body %}
+		
+				<!-- Start post Area -->
+				<section class="post-area section-gap">
+					<div class="container">
+						
+						<div class="row justify-content-center d-flex">
+							
+							<div class="col-lg-8 post-list">
+								<ul class="cat-list">
+									<li><a href="#">Recent</a></li>
+									<li><a href="#">Full Time</a></li>
+									<li><a href="#">Intern</a></li>
+									<li><a href="#">part Time</a></li>
+								</ul>
+								{% for job in jobs %}
+								<div class="single-post d-flex flex-row">
+									<div class="thumb">
+										<img src="" alt="">
+										
+									</div>
+								
+									<div class="details">
+										<div class="title d-flex flex-row justify-content-between">
+											<div class="titles">
+												<a href="{% url 'jobs:job_detail' job.slug %}"><h4> {{job}}</h4></a>
+												<h6>{{job.published_at | date:"d M o"}}</h6>					
+											</div>
+											<ul class="btns">
+												<li><a href="#"><span class="lnr lnr-heart"></span></a></li>
+												<li><a href="{% url 'jobs:job_detail' job.slug %}">Apply</a></li>
+											</ul>
+										</div>
+										<p>
+											{{ job.description}}
+										</p>
+										<h5>Job Nature: {{ job.Job_Type }}</h5>
+										<p class="address"><span class="lnr lnr-map"></span> {{job.location}}</p>
+										<p class="address">Salary: {{job.salary}}k/y</p>
+										<p class="address">Experience: {{job.experience}}</p>
+										<p class="address">Vacancy: {{job.vacancy}}</p>
+
+									</div>
+									
+								</div>
+								{% endfor %}	
+								
+								{% if jobs.has_other_pages %}
+									<nav aria-label="Page navigation example ">
+										<ul class="pagination justify-content-center my-5">
+								
+										{% if jobs.has_previous %}
+											<li class="page-item"><a class="btn ticker-btn" href="?page={{ jobs.previous_page_number }}">Previous</a></li>
+										{% endif %}
+								
+										{% for p_num in jobs.paginator.page_range %}
+											<li class="page-item"><a class="page-link" href="?page={{ p_num }}">{{p_num}}</a></li>
+										{% endfor %}
+								
+										{% if jobs.has_next %}
+											<li class="page-item"><a class="ticker-btn btn" href="?page={{ jobs.next_page_number }}">Next</a></li>
+										{% endif %}
+								
+										</ul>
+									</nav>
+
+								{% endif %}
+								
+							</div>
+							
+							<div class="col-lg-4 sidebar">
+								<h3 class="card-title">{{jobs.count }} Jobs available</h3>
+								<div class="single-slidebar">
+									<h4>Jobs by Location</h4>
+									<ul class="cat-list">
+										<li><a class="justify-content-between d-flex" href="category.html"><p>New York</p><span>37</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Park Montana</p><span>57</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Atlanta</p><span>33</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Arizona</p><span>36</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Florida</p><span>47</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Rocky Beach</p><span>27</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Chicago</p><span>17</span></a></li>
+									</ul>
+								</div>
+							
+
+								<div class="single-slidebar">
+									<h4>{{job.category}}</h4>
+									<ul class="cat-list">
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Technology</p><span>37</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Media & News</p><span>57</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Web</p><span>33</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Medical</p><span>36</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Restaurants</p><span>47</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Developer</p><span>27</span></a></li>
+										<li><a class="justify-content-between d-flex" href="category.html"><p>Accounting</p><span>17</span></a></li>
+									</ul>
+								</div>
+
+								<div class="single-slidebar">
+									<h4>Carrer Advice Blog</h4>
+									<div class="blog-list">
+										<div class="single-blog " style="background:#000 url(img/blog1.jpg);">
+											<a href="single.html"><h4>Home Audio Recording <br>
+											For Everyone</h4></a>
+											<div class="meta justify-content-between d-flex">
+												<p>
+													02 Hours ago
+												</p>
+												<p>
+													<span class="lnr lnr-heart"></span>
+													06
+													<span class="lnr lnr-bubble"></span>
+													02
+												</p>
+											</div>
+										</div>
+										<div class="single-blog " style="background:#000 url(img/blog2.jpg);">
+											<a href="single.html"><h4>Home Audio Recording <br>
+											For Everyone</h4></a>
+											<div class="meta justify-content-between d-flex">
+												<p>
+													02 Hours ago
+												</p>
+												<p>
+													<span class="lnr lnr-heart"></span>
+													06
+													<span class="lnr lnr-bubble"></span>
+													02
+												</p>
+											</div>
+										</div>
+										<div class="single-blog " style="background:#000 url(img/blog1.jpg);">
+											<a href="single.html"><h4>Home Audio Recording <br>
+											For Everyone</h4></a>
+											<div class="meta justify-content-between d-flex">
+												<p>
+													02 Hours ago
+												</p>
+												<p>
+													<span class="lnr lnr-heart"></span>
+													06
+													<span class="lnr lnr-bubble"></span>
+													02
+												</p>
+											</div>
+										</div>																		
+									</div>
+								</div>							
+
+							</div>
+						</div>
+					</div>	
+				</section>
+				<!-- End post Area -->
+
+					<!-- Start callto-action Area -->
+					<section class="callto-action-area section-gap">
+						<div class="container">
+							<div class="row d-flex justify-content-center">
+								<div class="menu-content col-lg-9">
+									<div class="title text-center">
+										<h1 class="mb-10 text-white">Join us today without any hesitation</h1>
+										<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+										<a class="primary-btn" href="#">I am a Candidate</a>
+										<a class="primary-btn" href="#">We are an Employer</a>
+									</div>
+								</div>
+							</div>	
+						</div>	
+					</section>
+					<!-- End calto-action Area -->
+		
+				
+							<!-- Start download Area -->
+							<section class="download-area section-gap" id="app">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-6 download-left">
+											<img class="img-fluid" src="img/d1.png" alt="">
+										</div>
+										<div class="col-lg-6 download-right">
+											<h1>Download the <br>
+											Job Listing App Today!</h1>
+											<p class="subs">
+												It won’t be a bigger problem to find one video game lover in your neighbor. Since the introduction of Virtual Game, it has been achieving great heights so far as its popularity and technological advancement are concerned.
+											</p>
+											<div class="d-flex flex-row">
+												<div class="buttons">
+													<i class="fa fa-apple" aria-hidden="true"></i>
+													<div class="desc">
+														<a href="#">
+															<p>
+																<span>Available</span> <br>
+																on App Store
+															</p>
+														</a>
+													</div>
+												</div>
+												<div class="buttons">
+													<i class="fa fa-android" aria-hidden="true"></i>
+													<div class="desc">
+														<a href="#">
+															<p>
+																<span>Available</span> <br>
+																on Play Store
+															</p>
+														</a>
+													</div>
+												</div>									
+											</div>						
+										</div>
+									</div>
+								</div>	
+							</section>
+							<!-- End download Area -->
+		
+			
+
+
+					
+	{% endblock body %}
+
+
